@@ -6,7 +6,7 @@ from django import forms
 from . import util
 
 class EntryForm(forms.Form):
-    entry = forms.CharField(label="Title")
+    title = forms.CharField(label="Title")
 
 
 def index(request):
@@ -39,6 +39,13 @@ def entries(request, entry):
 
 
 def create(request):
+    if request.method == "POST":
+        form = EntryForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            text = request.POST.get("text")
+            print(text)
+            print(title)
     return render(request, "encyclopedia/create.html", {
         "form": EntryForm()
     })

@@ -7,11 +7,10 @@
 {% block body %}
 
 <h1>Create an entry!</h1>
-<form action="{% url 'index' %}" method="post">
+<form action="{% url 'create' %}" method="POST" id="createForm">
     {% csrf_token %}
     {{ form }}
-    <textarea class="create" name="create" placeholder="Create your entry in Markdown"></textarea>
-    <button type="submit" name="create" class="btn btn-primary" id="save">Submit</button>
+    <input type="submit" class="btn btn-primary">Submit</button>
 </form>
-
+<textarea name="text" placeholder="Create your entry in Markdown" form="createForm"></textarea>
 {% endblock %}
